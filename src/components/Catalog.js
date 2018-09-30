@@ -14,7 +14,7 @@ class Catalog extends Component {
       return (
         <div>
           <h1>Catalog</h1>
-          <div className="container">{this.props.movies.map(item => {
+          <div className="container-of-movies">{this.props.movies.map(item => {
           let link = `/movies/${item.id}`;
           return(<Link to={link} key={item.id}>
           <div className="movie-box" id={item.id} key={item.title}>

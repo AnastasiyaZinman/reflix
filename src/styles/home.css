@@ -1,24 +1,24 @@
 .userBox{
     padding: 10px;
-    height: 280px;
-    width: 250px;
+    width: 350px;
+    height: 380px;
     color:black;
     font-size: 30px;
     font-weight: bold;
     text-align: center;
     margin: 10px 10px;
 }
-.container{
+.container-of-movies{
     width:100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     justify-content: space-between;
-    /* flex-flow: row wrap; */
+    padding: 0 20px 0 20px;
     flex-wrap: wrap;
 }
 .img_av{
-    margin:10px;
-    width:180px;
-    height: 180px;
+    margin:20px;
+    width:70%;
+    height: 70%;
     
 }
