@@ -23,7 +23,7 @@ class Home extends Component {
         <div className="container-of-movies">{this.state.users.map(item => 
         <Link to="/catalog" key={item.id}>
         <div style={{backgroundColor:item.color}}  className="userBox rounded" key={item.name}>
-        <img className="img_av img-circle" src={item.imgUrl} alt=""/><br />
+        <img className="img_av" src={item.imgUrl} alt=""/><br />
         {item.name}
         </div>
         </Link>

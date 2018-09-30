@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link} from 'react-router-dom';
 import '../styles/catalog.css'
+import Movie from './Movie';
+// import MovieDetail from './MovieDetail';
 class Catalog extends Component {
     constructor() {
       super();
@@ -16,11 +18,9 @@ class Catalog extends Component {
           <h1>Catalog</h1>
           <div className="container-of-movies">{this.props.movies.map(item => {
           let link = `/movies/${item.id}`;
-          return(<Link to={link} key={item.id}>
-          <div className="movie-box" id={item.id} key={item.title}>
-          <img className="img" src={item.img} alt=""/>
+          return(<div className="m-w-button" key={item.id}>
+          <Movie link={link} movieId={item.id} movieTitle={item.title} movieImg={item.img}></Movie>
           </div>
-          </Link>
           )}
           )}
           </div>
