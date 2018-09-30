@@ -31,7 +31,7 @@ class App extends Component {
         <div id="main-links">
           {/* Main Links */}
           <Link to="/">Home</Link>
-          <Link to="/about">Catalog</Link>
+          <Link to="/catalog">Catalog</Link>
         </div>
         {/* Routes go here */}
         <Route path="/" exact component={Home}/>

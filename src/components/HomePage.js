@@ -24,7 +24,7 @@ class Home extends Component {
         <Link to="/catalog">
         <div style={{backgroundColor:item.color}}  className="userBox rounded" key={item.name}>
         {item.name}<br />
-        <img className="img" src={item.imgUrl} alt=""/>
+        <img className="img_av" src={item.imgUrl} alt=""/>
         </div>
         </Link>
         )}

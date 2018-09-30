@@ -1,6 +1,6 @@
 .userBox{
-   
-    height: 250px;
+    padding: 10px;
+    height: 280px;
     width: 250px;
     color:black;
     font-size: 30px;
@@ -16,8 +16,9 @@
     /* flex-flow: row wrap; */
     flex-wrap: wrap;
 }
-.img{
-    margin-top:10px;
-    width:150px;
-    height:auto;
+.img_av{
+    margin:10px;
+    width:180px;
+    height: 180px;
+    
 }
