@@ -36,6 +36,7 @@ class App extends Component {
         {/* Routes go here */}
         <Route path="/" exact component={Home}/>
         <Route path="/catalog" exact render={() => <Catalog movies={this.state.movies} />} />
+        <Route path="/movies/:id" exact render={({ match }) => <Movie match= {match} movies={this.state.movies} />} />
         {/* <Route path="/directory/:fentities" exact render={({ match }) => <Fentities match = {match} state={this.state}/>} />
         <Route path="/directory/:fentities/:name" exact render={({ match }) => <Fentity match = {match} state={this.state} />} /> */}
       </div>

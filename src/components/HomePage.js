@@ -21,7 +21,7 @@ class Home extends Component {
       <div>
         <h1>Who's watching?</h1>
         <div className="container">{this.state.users.map(item => 
-        <Link to="/catalog">
+        <Link to="/catalog" key={item.id}>
         <div style={{backgroundColor:item.color}}  className="userBox rounded" key={item.name}>
         {item.name}<br />
         <img className="img_av" src={item.imgUrl} alt=""/>

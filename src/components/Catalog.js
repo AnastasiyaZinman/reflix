@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link} from 'react-router-dom';
 import '../styles/catalog.css'
-class Home extends Component {
+class Catalog extends Component {
     constructor() {
       super();
       this.state = {
@@ -12,7 +12,7 @@ class Home extends Component {
     render() {
         console.log(this.props.movies);
       return (
-        <div className="container">
+        <div>
           <h1>Catalog</h1>
           <div className="container">{this.props.movies.map(item => {
           let link = `/movies/${item.id}`;
@@ -28,4 +28,4 @@ class Home extends Component {
       )
     }
   }
-  export default Home;
+  export default Catalog;
