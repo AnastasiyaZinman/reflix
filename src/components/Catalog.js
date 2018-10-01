@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import { Link} from 'react-router-dom';
 import '../styles/catalog.css'
 import Movie from './Movie';
-// import MovieDetail from './MovieDetail';
 class Catalog extends Component {
     constructor() {
       super();
@@ -16,13 +14,22 @@ class Catalog extends Component {
         searchWord: e.target.value
       })
     }
+    filterMoviesBySearchWord =() => {
+      console.log(this.state.searchWord);
+     return this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchWord));
+    }
+
+    defineButtonStyle(buttonIsRented){
+      return buttonIsRented ?  
+      {type:"rented-btn-type btn btn-secondary", text:"Rented"}:{type: "add-btn-type btn btn-info", text: "Add"};
+    }
    
     generateMovies() {
+      let movieList = this.filterMoviesBySearchWord();
       return(
-      <div className="container-of-movies">{this.props.movies.map(item => {
+      <div className="container-of-movies">{movieList.map(item => {
       let link = `/movies/${item.id}`;
-      let buttonType= item.isRented ?  
-      {type:"rented-btn-type btn btn-secondary", text:"Rented"} :{type: "add-btn-type btn btn-info", text: "Add"};
+      let buttonType = this.defineButtonStyle(item.isRented); 
       return(<div className="m-w-button" key={item.id}>
       <Movie link={link} 
       changeRentStatus={this.props.changeRentStatus} 
@@ -38,7 +45,7 @@ class Catalog extends Component {
     }
 
     generateRented() {
-      let movieList = this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchWord));
+      let movieList = this.filterMoviesBySearchWord();
       let rentedList = movieList.filter(movie => movie.isRented)
       // let rentedList = this.props.movies.filter(movie => movie.isRented)
       return  (<div className="container-of-movies">{rentedList.map(item => {

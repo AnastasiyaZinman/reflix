@@ -37,10 +37,10 @@ class App extends Component {
     const movieIndex = this.findMovieById(id)
     let newState = {...this.state.movies};
     console.log(newState[movieIndex].isRented);
-  (newState[movieIndex].isRented) ? 
-  newState[movieIndex].isRented=false : newState[movieIndex].isRented=true;
-   console.log("updated array ",this.state)
-   this.setState(newState);
+    (newState[movieIndex].isRented) ? 
+    newState[movieIndex].isRented=false : newState[movieIndex].isRented=true;
+    console.log("updated array ",this.state)
+    this.setState(newState);
   }
   render() {
     return (
