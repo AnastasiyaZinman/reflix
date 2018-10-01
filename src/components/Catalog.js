@@ -41,19 +41,22 @@ class Catalog extends Component {
       let movieList = this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchWord));
       let rentedList = movieList.filter(movie => movie.isRented)
       // let rentedList = this.props.movies.filter(movie => movie.isRented)
-      return rentedList.map((item, i) => {
-        let link = `/movies/${item.title}`
-        return (<div key={i} className="container-of-movies">
-        <Movie
+      return  (<div className="container-of-movies">{rentedList.map(item => {
+        let link = `/movies/${item.id}`;
+        let buttonType= item.isRented ?  
+        {type:"rented-btn-type btn btn-secondary", text:"Rented"} :{type: "add-btn-type btn btn-info", text: "Add"};
+        return(<div className="m-w-button" key={item.id}>
+       <Movie
         movie={item}
         changeRentStatus={this.props.changeRentStatus} 
         btnType='rented-btn-type btn btn-warning'
         btnText='Return'
-        link={link}
-        />
+        link={link}>
+        </Movie>
         </div>
-        )
-      })
+        )}
+        )}
+        </div>)
     }
     render() {
         console.log(this.props.movies);
@@ -65,11 +68,8 @@ class Catalog extends Component {
           <h1 className="float-center">Catalog</h1>
           {this.generateMovies()}
         <hr></hr>
-        <div id="rentedDiv">Rented Movies:
-        <br></br>
+        <h1 id="float-center">Rented Movies:</h1>
         {this.generateRented()}
-        </div>
-  
         </div>
         
       )
