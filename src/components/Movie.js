@@ -2,25 +2,23 @@ import React, { Component } from 'react';
 import { Link} from 'react-router-dom';
 import '../styles/catalog.css'
 class Movie extends Component {
-    constructor() {
-      super();
-      this.state = {
-      
-      }
+    changeRentStatus = () =>{
+      this.props.changeRentStatus(this.props.movie);
     }
-  
     render() {
         console.log(this.props);
         const item=this.props;
       return (
-        <Link to={item.link} key={item.id}>
+        
         <div>
          <div className="movie-box" id={item.id} key={item.title}>
+            <Link to={item.link} key={item.id}>
             <img className="img" src={item.movieImg} title={item.movieTitle} alt={item.movieTitle}/>
-            <button type="button" className="btn btn-info">Add</button>
+            </Link>
+            <button type="button" onClick={this.changeRentStatus} className="btn btn-info">Add</button>
             </div>
         </div>
-        </Link>
+        
       )
     }
   }

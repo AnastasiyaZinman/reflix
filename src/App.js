@@ -24,6 +24,24 @@ class App extends Component {
       searchWord: "the"
     }
   }
+  findMovieById = (movieId) => {
+    var index;
+    console.log("movieId",movieId);
+    console.log(this.state.movies);
+    this.state.movies.forEach((f,i)=> { 
+    console.log("f",f['id']," i " ,i)
+         if (f['id'] == movieId) index=i;
+      })
+    return index;
+  }
+  changeRentStatus = (movie) => {
+    const movieIndex = this.findMovieById(movie.id)
+  // console.log("mIndex",movieIndex);
+  let movieState= this.state.movies[movieIndex];
+   (movieState.isRented) ? movieState.isRented=false: movieState.isRented=true;
+  //  changingButtonStyle
+   console.log("updated array ",this.state.movies)
+  }
   render() {
     return (
       <Router>
@@ -35,7 +53,7 @@ class App extends Component {
         </div>
         {/* Routes go here */}
         <Route path="/" exact component={Home}/>
-        <Route path="/catalog" exact render={() => <Catalog movies={this.state.movies} />} />
+        <Route path="/catalog" exact render={() => <Catalog movies={this.state.movies} changeRentStatus={this.changeRentStatus} />} />
         <Route path="/movies/:id" exact render={({ match }) => <MovieDetail match= {match} movies={this.state.movies} />} />
         {/* <Route path="/directory/:fentities" exact render={({ match }) => <Fentities match = {match} state={this.state}/>} />
         <Route path="/directory/:fentities/:name" exact render={({ match }) => <Fentity match = {match} state={this.state} />} /> */}

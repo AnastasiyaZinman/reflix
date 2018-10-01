@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link} from 'react-router-dom';
+// import { Link} from 'react-router-dom';
 import '../styles/movie.css'
 class MovieDetail extends Component {
     constructor() {
@@ -14,7 +14,7 @@ class MovieDetail extends Component {
         const movieId=this.props.match.params["id"];
         // console.log("mId",movieId);
         const movie =  this.props.movies.filter(f => {
-            console.log("f",f["id"]);
+        // console.log("f",f["id"]);
             return f["id"] == movieId
         })[0]
         console.log(movie); 
@@ -27,7 +27,6 @@ class MovieDetail extends Component {
           <div className="movie-box movie">
           <img className="img" src={movie.img} title={movie.title} alt={movie.title}/>
           </div>
-         
           <div className="description">{movie.descrShort}</div>
           </div>
           {/* </Link> */}
