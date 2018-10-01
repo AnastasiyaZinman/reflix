@@ -22,7 +22,7 @@ class Catalog extends Component {
       <div className="container-of-movies">{this.props.movies.map(item => {
       let link = `/movies/${item.id}`;
       let buttonType= item.isRented ?  
-      {type:"rented-btn-type btn btn-info", text:"Rented"} :{type: "add-btn-type btn btn-info", text: "Add"};
+      {type:"rented-btn-type btn btn-secondary", text:"Rented"} :{type: "add-btn-type btn btn-info", text: "Add"};
       return(<div className="m-w-button" key={item.id}>
       <Movie link={link} 
       changeRentStatus={this.props.changeRentStatus} 
@@ -36,16 +36,42 @@ class Catalog extends Component {
       </div>
       )
     }
+
+    generateRented() {
+      let movieList = this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchWord));
+      let rentedList = movieList.filter(movie => movie.isRented)
+      // let rentedList = this.props.movies.filter(movie => movie.isRented)
+      return rentedList.map((item, i) => {
+        let link = `/movies/${item.title}`
+        return (<div key={i} className="container-of-movies">
+        <Movie
+        movie={item}
+        changeRentStatus={this.props.changeRentStatus} 
+        btnType='rented-btn-type btn btn-warning'
+        btnText='Return'
+        link={link}
+        />
+        </div>
+        )
+      })
+    }
     render() {
         console.log(this.props.movies);
       return (
         <div>
           <div className="float-right mr-3 form-group col-2">
-          <input type="text" id="search" className="form-control text-white search-p" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Type movie for search" />
+          <input type="text" id="search" className="form-control text-black search-p" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Type movie for search" />
           </div>
           <h1 className="float-center">Catalog</h1>
           {this.generateMovies()}
+        <hr></hr>
+        <div id="rentedDiv">Rented Movies:
+        <br></br>
+        {this.generateRented()}
         </div>
+  
+        </div>
+        
       )
     }
   }
