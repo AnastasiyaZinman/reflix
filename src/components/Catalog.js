@@ -12,9 +12,9 @@ class Catalog extends Component {
       console.log(e.target.value);
       this.setState({searchWord: e.target.value})
     }
-    filterMoviesBySearchWord =() => {
+    filterMoviesBySearchWord =(array) => {
       console.log(this.state.searchWord);
-     return this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.state.searchWord));
+     return array.filter(movie => movie.title.toLowerCase().includes(this.state.searchWord));
     }
 
     defineButtonStyle(buttonIsRented){
@@ -23,7 +23,7 @@ class Catalog extends Component {
     }
    
     generateMovies() {
-      let movieList = this.filterMoviesBySearchWord();
+      let movieList = this.filterMoviesBySearchWord(this.props.movies);
       return(
       <div className="container-of-movies">{movieList.map(item => {
       let link = `/movies/${item.id}`;
@@ -43,18 +43,22 @@ class Catalog extends Component {
     }
 
     generateRented() {
-      let movieList = this.filterMoviesBySearchWord();
-      let rentedList = movieList.filter(movie => movie.isRented)
+     
+      // let rentedList = movieList.filter(movie => movie.isRented)
+      let rentedList= JSON.parse(localStorage.getItem("rentedMovies"));
+      let movieList = this.filterMoviesBySearchWord(rentedList);
+      console.log("rentedlistfrom LOS",rentedList);
       // let rentedList = this.props.movies.filter(movie => movie.isRented)
-      return  (<div className="container-of-movies">{rentedList.map(item => {
+      return  (<div className="container-of-movies">{movieList.map((item,i) => {
         let link = `/movies/${item.id}`;
-        return(<div className="m-w-button" key={item.id}>
+        return(<div className="m-w-button" key={i}>
        <Movie
         movie={item}
         changeRentStatus={this.props.changeRentStatus} 
         btnType='rented-btn-type btn btn-warning'
         btnText='Return'
-        link={link}>
+        link={link}
+        >
         </Movie>
         </div>
         )}
@@ -62,7 +66,7 @@ class Catalog extends Component {
         </div>)
     }
     render() {
-        console.log(this.props.movies);
+        // console.log(this.props.movies);
         let budget=this.props.budget;
       return (
         <div className="mt-1">

@@ -6,7 +6,7 @@ class Movie extends Component {
       this.props.changeRentStatus(this.props.movie.id);
     }
     render() {
-        console.log("props",this.props.movie);
+        // console.log("props",this.props.movie);
         const item=this.props.movie;
       return (
         <div>
