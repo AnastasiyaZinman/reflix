@@ -17,6 +17,25 @@ class Catalog extends Component {
       })
     }
    
+    generateMovies() {
+      return(
+      <div className="container-of-movies">{this.props.movies.map(item => {
+      let link = `/movies/${item.id}`;
+      let buttonType= item.isRented ?  
+      {type:"rented-btn-type btn btn-info", text:"Rented"} :{type: "add-btn-type btn btn-info", text: "Add"};
+      return(<div className="m-w-button" key={item.id}>
+      <Movie link={link} 
+      changeRentStatus={this.props.changeRentStatus} 
+      btnType={buttonType.type}
+      btnText={buttonType.text}
+      movie={item} >
+      </Movie>
+      </div>
+      )}
+      )}
+      </div>
+      )
+    }
     render() {
         console.log(this.props.movies);
       return (
@@ -25,14 +44,7 @@ class Catalog extends Component {
           <input type="text" id="search" className="form-control text-white search-p" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Type movie for search" />
           </div>
           <h1 className="float-center">Catalog</h1>
-          <div className="container-of-movies">{this.props.movies.map(item => {
-          let link = `/movies/${item.id}`;
-          return(<div className="m-w-button" key={item.id}>
-          <Movie link={link} changeRentStatus={this.props.changeRentStatus} movie={item} movieId={item.id} movieTitle={item.title} movieImg={item.img}></Movie>
-          </div>
-          )}
-          )}
-          </div>
+          {this.generateMovies()}
         </div>
       )
     }

@@ -9,12 +9,9 @@ class MovieDetail extends Component {
     }
   
     render() {
-        // console.log(this.props.movies);
-        // console.log("match",this.props.match.params["id"]);
         const movieId=this.props.match.params["id"];
-        // console.log("mId",movieId);
         const movie =  this.props.movies.filter(f => {
-        // console.log("f",f["id"]);
+
             return f["id"] == movieId
         })[0]
         console.log(movie); 

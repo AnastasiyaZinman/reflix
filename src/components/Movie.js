@@ -3,19 +3,19 @@ import { Link} from 'react-router-dom';
 import '../styles/catalog.css'
 class Movie extends Component {
     changeRentStatus = () =>{
-      this.props.changeRentStatus(this.props.movie);
+      this.props.changeRentStatus(this.props.movie.id);
     }
     render() {
-        console.log(this.props);
-        const item=this.props;
+        console.log("props",this.props.movie);
+        const item=this.props.movie;
       return (
-        
         <div>
          <div className="movie-box" id={item.id} key={item.title}>
-            <Link to={item.link} key={item.id}>
-            <img className="img" src={item.movieImg} title={item.movieTitle} alt={item.movieTitle}/>
+            <Link to={this.props.link} key={item.id}>
+            <img className="img" src={item.img} title={item.title} alt={item.title}/>
             </Link>
-            <button type="button" onClick={this.changeRentStatus} className="btn btn-info">Add</button>
+            <button type="button" id={item.id} onClick={this.changeRentStatus} 
+            className={this.props.btnType}>{this.props.btnText}</button>
             </div>
         </div>
         
