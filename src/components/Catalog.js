@@ -10,9 +10,7 @@ class Catalog extends Component {
     }
     updateSearchText = (e) => {
       console.log(e.target.value);
-      this.setState({
-        searchWord: e.target.value
-      })
+      this.setState({searchWord: e.target.value})
     }
     filterMoviesBySearchWord =() => {
       console.log(this.state.searchWord);
@@ -65,11 +63,14 @@ class Catalog extends Component {
     }
     render() {
         console.log(this.props.movies);
+        let budget=this.props.budget;
       return (
         <div className="mt-1">
+         <span className="budget float-left">Budget: {budget}</span>
           <div className="float-right mr-3 form-group col-2">
           <input type="text" id="search" className="form-control text-black search-p" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Type movie for search" />
           </div>
+          
           <h1 className="float-center">Catalog</h1>
           {this.generateMovies()}
         <hr></hr>

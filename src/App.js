@@ -19,8 +19,15 @@ class App extends Component {
         { id: 4, isRented: false, title: "Beauty and the Beast", year: 2016, img: "https://images-na.ssl-images-amazon.com/images/I/51ArFYSFGJL.jpg", descrShort: "Basically the same as the original, except now Hermi-- Emma Wattson plays Belle, fittingly so some would say, given how actively progressive she is regarding women's rights. Rumor has it that in the bonus scenes she whips out a wand and turns Gaston into a toad, but in order to watch those scenes you need to recite a certain incantation." }
       ],
       budget: 7,
-      searchWord: "the"
+      // searchWord: ""
     }
+  }
+  componentDidMount(){
+    (!localStorage.hasOwnProperty("budget")) ? 
+    localStorage.setItem("budget", this.state.budget): this.setState({"budget": JSON.parse(localStorage.getItem("budget"))})
+  }
+  componentDidUpdate(){
+    localStorage.setItem("budget", this.state.budget);
   }
   findMovieById = (movieId) => {
     var index;
@@ -30,14 +37,26 @@ class App extends Component {
       })
     return index;
   }
+ increaseBudget(){
+  this.setState({budget:this.state.budget=this.state.budget + 3})
+ }
+ decreaseBudgetAndRentMovie(newState,movieIndex){
+   if(this.state.budget>2){
+    this.setState({budget:this.state.budget=this.state.budget - 3});
+    newState[movieIndex].isRented=true
+   }
+   else alert("Not enough money. Firstly, please return books");
+  
+ }
   changeRentStatus = (id) => { 
     console.log("mIndex",id);
     const movieIndex = this.findMovieById(id)
     let newState = {...this.state.movies};
     console.log(newState[movieIndex].isRented);
     (newState[movieIndex].isRented) ? 
-    newState[movieIndex].isRented=false : newState[movieIndex].isRented=true;
-    console.log("updated array ",this.state)
+    (newState[movieIndex].isRented=false, this.increaseBudget()) : 
+    this.decreaseBudgetAndRentMovie(newState,movieIndex);
+    // console.log("updated array ",this.state)
     this.setState(newState);
   }
   render() {
@@ -52,7 +71,7 @@ class App extends Component {
         </div>
         {/* Routes go here */}
         <Route path="/" exact component={Home}/>
-        <Route path="/catalog" exact render={() => <Catalog movies={this.state.movies} changeRentStatus={this.changeRentStatus} />} />
+        <Route path="/catalog" exact render={() => <Catalog movies={this.state.movies} changeRentStatus={this.changeRentStatus} budget={this.state.budget}/>} />
         <Route path="/movies/:id" exact render={({ match }) => <MovieDetail match= {match} movies={this.state.movies} />} />
         {/* <Route path="/directory/:fentities" exact render={({ match }) => <Fentities match = {match} state={this.state}/>} />
         <Route path="/directory/:fentities/:name" exact render={({ match }) => <Fentity match = {match} state={this.state} />} /> */}

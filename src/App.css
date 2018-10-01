@@ -64,3 +64,10 @@ padding: 20px;
 i {
   font-family: fontawesome !important;
   }
+  .budget{
+    font-size: 18px;
+    margin-left: 10px;
+    color: #45c7e7;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 60px;
+  }
