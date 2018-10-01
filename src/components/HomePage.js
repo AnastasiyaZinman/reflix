@@ -20,8 +20,8 @@ class Home extends Component {
     return (
       <div>
         <h1>Who's watching?</h1>
-        <div className="container-of-movies">{this.state.users.map(item => 
-        <Link to="/catalog" key={item.id}>
+        <div className="container-of-movies">{this.state.users.map((item,i) => 
+        <Link to="/catalog" key={i}>
         <div style={{backgroundColor:item.color}}  className="userBox rounded" key={item.name}>
         <img className="img_av" src={item.imgUrl} alt=""/><br />
         {item.name}

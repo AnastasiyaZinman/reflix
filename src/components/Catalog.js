@@ -50,8 +50,6 @@ class Catalog extends Component {
       // let rentedList = this.props.movies.filter(movie => movie.isRented)
       return  (<div className="container-of-movies">{rentedList.map(item => {
         let link = `/movies/${item.id}`;
-        let buttonType= item.isRented ?  
-        {type:"rented-btn-type btn btn-secondary", text:"Rented"} :{type: "add-btn-type btn btn-info", text: "Add"};
         return(<div className="m-w-button" key={item.id}>
        <Movie
         movie={item}
@@ -68,7 +66,7 @@ class Catalog extends Component {
     render() {
         console.log(this.props.movies);
       return (
-        <div>
+        <div className="mt-1">
           <div className="float-right mr-3 form-group col-2">
           <input type="text" id="search" className="form-control text-black search-p" onChange={this.updateSearchText} value= {this.state.searchWord} placeholder="Type movie for search" />
           </div>

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import '../node_modules/font-awesome/css/font-awesome.css';
+import '../node_modules/font-awesome/css/font-awesome.css';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/HomePage';
 import Catalog from './components/Catalog';
 import MovieDetail from './components/MovieDetail';
-import Movie from './components/Movie';
-import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -50,6 +48,7 @@ class App extends Component {
           {/* Main Links */}
           <Link to="/">Home</Link>
           <Link to="/catalog">Catalog</Link>
+          <span className="float-right mr-3 text-danger reflix-l "><i className="fas fa-film"> </i>REFLIX</span>
         </div>
         {/* Routes go here */}
         <Route path="/" exact component={Home}/>
